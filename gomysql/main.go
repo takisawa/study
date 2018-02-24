@@ -14,6 +14,7 @@ func main() {
     fmt.Println(err)
     return
 	}
+  defer db.Close()
 
   fmt.Println(db)
 }
