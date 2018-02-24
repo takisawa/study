@@ -1,0 +1,3 @@
+[[constraint]]
+  name = "github.com/go-sql-driver/mysql"
+  revision = "v1.2-171-g267b128"
