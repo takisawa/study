@@ -1,0 +1,7 @@
+# ~/.gitignore
+
+fast_abs
+*.bc
+*.o
+*.s
+*.i
