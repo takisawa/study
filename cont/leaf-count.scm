@@ -17,4 +17,4 @@
       (cont 1)))
 
 (print (leaf-count tree))
-(print (leaf-count/cps tree (lambda(x) x)))
+(print (leaf-count/cps tree identity))
