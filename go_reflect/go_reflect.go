@@ -18,6 +18,8 @@ func main() {
 	fmt.Println(reflect.TypeOf(map[string]int{"A": 1, "B": 2, "C": 3}))
 	fmt.Println(reflect.TypeOf(Person{}))
 	fmt.Println(reflect.TypeOf(&Person{}))
+	fmt.Println(reflect.TypeOf(nil))
+	fmt.Printf("%T\n", &Person{})
 
 	// reflect.New
 	person := &Person{}
