@@ -11,7 +11,7 @@ type Person struct {
 }
 
 func main() {
-	// reflect.Typeof
+	fmt.Printf("----- reflect.TypeOf -----\n")
 	fmt.Println(reflect.TypeOf(3))
 	fmt.Println(reflect.TypeOf("ABC"))
 	fmt.Println(reflect.TypeOf([]int{1, 2, 3}))
@@ -20,6 +20,15 @@ func main() {
 	fmt.Println(reflect.TypeOf(&Person{}))
 	fmt.Println(reflect.TypeOf(nil))
 	fmt.Printf("%T\n", &Person{})
+
+	fmt.Printf("----- reflect.ValueOf -----\n")
+	fmt.Println(reflect.ValueOf(3))
+	fmt.Println(reflect.ValueOf("ABC"))
+	fmt.Println(reflect.ValueOf([]int{1, 2, 3}))
+	fmt.Println(reflect.ValueOf(map[string]int{"A": 1, "B": 2, "C": 3}))
+	fmt.Println(reflect.ValueOf(Person{}))
+	fmt.Println(reflect.ValueOf(&Person{}))
+	fmt.Println(reflect.ValueOf(nil))
 
 	// reflect.New
 	person := &Person{}
