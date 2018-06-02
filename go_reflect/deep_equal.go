@@ -5,6 +5,9 @@ import (
 	"reflect"
 )
 
+// 実装のURL
+// https://github.com/golang/go/blob/master/src/reflect/deepequal.go
+
 func main() {
 	ary1 := []int{1, 2, 3}
 	ary2 := []int{1, 2, 3}
