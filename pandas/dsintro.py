@@ -18,3 +18,7 @@ print(pd.Series(np.random.randn(5)))
 d = {'b' : 1, 'a' : 0, 'c' : 2}
 print(pd.Series(d))
 
+
+
+# from scalar value
+print(pd.Series(5, index=['a','b','c','d','e']))
