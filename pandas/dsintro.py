@@ -25,7 +25,7 @@ print(pd.Series(5, index=['a','b','c','d','e']))
 
 
 
-# scalar value * num
+# scalar calculation
 s = pd.Series(5, index=['a','b','c','d','e'])
 print(s + 3)
 print(s * 3)
@@ -38,3 +38,9 @@ d = {'one': pd.Series([1.,2.,3.], index=['a','b','c']),
      'two': pd.Series([1.,2.,3.,4.], index=['a','b','c','d'])}
 df = pd.DataFrame(d)
 print(df)
+
+
+
+# df calculation
+print(df + 3)
+print(df * 3)
