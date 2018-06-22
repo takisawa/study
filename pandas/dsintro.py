@@ -25,6 +25,13 @@ print(pd.Series(5, index=['a','b','c','d','e']))
 
 
 
+# scalar value * num
+s = pd.Series(5, index=['a','b','c','d','e'])
+print(s + 3)
+print(s * 3)
+
+
+
 
 # From dict of Series or dicts
 d = {'one': pd.Series([1.,2.,3.], index=['a','b','c']),
