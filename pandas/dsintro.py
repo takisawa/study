@@ -22,3 +22,12 @@ print(pd.Series(d))
 
 # from scalar value
 print(pd.Series(5, index=['a','b','c','d','e']))
+
+
+
+
+# From dict of Series or dicts
+d = {'one': pd.Series([1.,2.,3.], index=['a','b','c']),
+     'two': pd.Series([1.,2.,3.,4.], index=['a','b','c','d'])}
+df = pd.DataFrame(d)
+print(df)
