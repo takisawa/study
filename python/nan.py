@@ -21,3 +21,8 @@ print(float(float('NaN')))
 # NaNであるかチェック（自分自身と比較する）
 n = float('NaN')
 print(True if n == n else False)
+
+
+import math
+print(math.isnan(n))
+print(math.isnan(1))
