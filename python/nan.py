@@ -11,10 +11,10 @@ print(float('NaN') + 1)
 print(float('NaN') * 1)
 
 # キャスト
-# int(float('NaN'))
-# Traceback (most recent call last):
-#   File "<stdin>", line 1, in <module>
-# ValueError: cannot convert float NaN to integer
+try:
+    int(float('NaN'))
+except ValueError as err:
+    print(err)
 
 print(float(float('NaN')))
 
