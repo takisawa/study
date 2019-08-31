@@ -1,8 +1,10 @@
 # DynamoDB調査
 
+
 ## 更新日
 
 2019-08-31
+
 
 ## 概要
 
@@ -11,6 +13,8 @@
 - マルチリージョン、マルチマスター
 - 1日に10兆件以上のリクエストを処理することができ、毎秒2,000万件を超えるリクエストをサポート
 - Apache CassandraはDynamoDBより高速と言われているが、AWSにはManagedサービスががない
+- DynamoDB Streamsによって、アイテムの追加/更新/削除のイベントで処理を実行できる。
+- ポイントタイムリカバリによって、過去35日間の任意の時点にテーブルを復元することができる。
 
 
 ## 料金体系
@@ -29,12 +33,7 @@ DynamoDBは下記のキャパシティモードがある。
 
 ## Macでの開発環境の構築
 
-
-```
-% docker pull amazon/dynamodb-local
-% docker run -p 8000:8000 amazon/dynamodb-local
-
-```
+Makefileを参照
 
 
 ## TODO
