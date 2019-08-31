@@ -1,3 +1,5 @@
+EXECUTABLE="app"
+
 DOCKER_IMAGE="amazon/dynamodb-local"
 DOCKER_CONTAINER="dynamodb-local"
 
@@ -6,7 +8,11 @@ all: build
 
 .PHONY: build
 build:
-	go build -o main main.go
+	go build -o $(EXECUTABLE) main.go
+
+.PHONY: clean
+clean:
+	rm -f $(EXECUTABLE)
 
 .PHONY: docker-create
 docker-create:
