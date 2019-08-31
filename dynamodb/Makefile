@@ -6,7 +6,7 @@ all: build
 
 .PHONY: build
 build:
-	go build main.go -o main
+	go build -o main main.go
 
 .PHONY: docker-create
 docker-create:
