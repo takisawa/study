@@ -10,6 +10,10 @@ all: build
 build:
 	go build -o $(EXECUTABLE) main.go
 
+.PHONY: run
+run:
+	go run main.go
+
 .PHONY: clean
 clean:
 	rm -f $(EXECUTABLE)
@@ -29,3 +33,11 @@ docker-start:
 .PHONY: docker-stop
 docker-stop:
 	docker container stop $(DOCKER_CONTAINER)
+
+.PHONY: create-table
+create-table:
+	aws dynamodb create-table --table-name Persons \
+		--attribute-definitions AttributeName=Id,AttributeType=N \
+		--key-schema AttributeName=Id,KeyType=HASH \
+		--provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+		--endpoint-url http://localhost:8000

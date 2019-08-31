@@ -21,5 +21,22 @@ func main() {
 
 	db := dynamodb.New(dynamoSession)
 
-	fmt.Printf("%#v\n", db)
+	res, err := db.GetItem(&dynamodb.GetItemInput{
+		TableName: aws.String("Persons"),
+		Key: map[string]*dynamodb.AttributeValue{
+			"Id": {
+				N: aws.String("1"),
+			},
+		},
+		AttributesToGet: []*string{
+			aws.String("Name"),
+		},
+		ConsistentRead:         aws.Bool(true),
+		ReturnConsumedCapacity: aws.String("NONE"),
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("%#v\n", res)
 }
