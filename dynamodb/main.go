@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
+const tableName = "ClimbingGeos"
+
 func main() {
 	dynamoSession, err := session.NewSession(&aws.Config{
 		Region:      aws.String("ap-northeast-1"),
@@ -21,19 +23,17 @@ func main() {
 
 	db := dynamodb.New(dynamoSession)
 
-	res, err := db.GetItem(&dynamodb.GetItemInput{
-		TableName: aws.String("Persons"),
-		Key: map[string]*dynamodb.AttributeValue{
-			"Id": {
-				N: aws.String("1"),
+	queryInput := &dynamodb.QueryInput{
+		TableName: aws.String(tableName),
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			":id": {
+				S: aws.String("CLIMBING1"),
 			},
 		},
-		AttributesToGet: []*string{
-			aws.String("Name"),
-		},
-		ConsistentRead:         aws.Bool(true),
-		ReturnConsumedCapacity: aws.String("NONE"),
-	})
+		KeyConditionExpression: aws.String("ClimbingId = :id"),
+	}
+
+	res, err := db.Query(queryInput)
 	if err != nil {
 		panic(err)
 	}

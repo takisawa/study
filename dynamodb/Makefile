@@ -3,6 +3,8 @@ EXECUTABLE="app"
 DOCKER_IMAGE="amazon/dynamodb-local"
 DOCKER_CONTAINER="dynamodb-local"
 
+TABLE_NAME="ClimbingGeos"
+
 .PHONY: all
 all: build
 
@@ -36,8 +38,16 @@ docker-stop:
 
 .PHONY: create-table
 create-table:
-	aws dynamodb create-table --table-name Persons \
-		--attribute-definitions AttributeName=Id,AttributeType=N \
-		--key-schema AttributeName=Id,KeyType=HASH \
+	aws dynamodb create-table --table-name $(TABLE_NAME) \
+		--attribute-definitions AttributeName=ClimbingId,AttributeType=S AttributeName=Time,AttributeType=S \
+		--key-schema AttributeName=ClimbingId,KeyType=HASH AttributeName=Time,KeyType=RANGE \
 		--provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
 		--endpoint-url http://localhost:8000
+
+.PHONY: delete-table
+delete-table:
+	aws dynamodb delete-table --table-name $(TABLE_NAME) --endpoint-url http://localhost:8000
+
+.PHONY: list-tables
+list-tables:
+	aws dynamodb list-tables --endpoint-url http://localhost:8000
