@@ -2,22 +2,63 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"strconv"
+	"time"
 
 	_ "github.com/influxdata/influxdb1-client" // this is important because of the bug in go mod
-	client "github.com/influxdata/influxdb1-client/v2"
+	influxdb "github.com/influxdata/influxdb1-client/v2"
 )
 
 func main() {
-	c, err := client.NewHTTPClient(client.HTTPConfig{
+	client, err := influxdb.NewHTTPClient(influxdb.HTTPConfig{
 		Addr: "http://localhost:8086",
 	})
 	if err != nil {
 		fmt.Println("Error creating InfluxDB Client: ", err.Error())
 	}
-	defer c.Close()
+	defer client.Close()
 
-	q := client.NewQuery("SELECT count(value) FROM cpu_load", "mydb", "")
-	if response, err := c.Query(q); err == nil && response.Error() == nil {
-		fmt.Println(response.Results)
+	var (
+		shapes     = []string{"circle", "rectangle", "square", "triangle"}
+		colors     = []string{"red", "blue", "green"}
+		sampleSize = 3
+		pts        = make([]*influxdb.Point, sampleSize)
+	)
+
+	rand.Seed(time.Now().UnixNano())
+
+	for i := 0; i < sampleSize; i++ {
+		pts[i], err = influxdb.NewPoint(
+			"geos",
+			map[string]string{
+				"color": strconv.Itoa(rand.Intn(len(colors))),
+				"shape": strconv.Itoa(rand.Intn(len(shapes))),
+			},
+			map[string]interface{}{
+				"value": rand.Intn(sampleSize),
+			},
+			time.Now(),
+		)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	batchPointsConfig := influxdb.BatchPointsConfig{
+		Precision: "s",
+		Database:  "climbing",
+		// RetentionPolicy: "",
+		// WriteConsistency: "",
+	}
+
+	bp, err := influxdb.NewBatchPoints(batchPointsConfig)
+	if err != nil {
+		panic(err)
+	}
+
+	err = client.Write(bp)
+	if err != nil {
+		panic(err)
 	}
 }

@@ -29,3 +29,10 @@ name
 _internal
 climbing
 ```
+
+
+## InfluxDBの用語
+
+|用語|内容|
+|---|---|
+|measurements|RDBのテーブルに該当する|

@@ -4,20 +4,20 @@ import (
 	"fmt"
 
 	_ "github.com/influxdata/influxdb1-client" // this is important because of the bug in go mod
-	client "github.com/influxdata/influxdb1-client/v2"
+	influxdb "github.com/influxdata/influxdb1-client/v2"
 )
 
 func main() {
-	c, err := client.NewHTTPClient(client.HTTPConfig{
+	client, err := influxdb.NewHTTPClient(influxdb.HTTPConfig{
 		Addr: "http://localhost:8086",
 	})
 	if err != nil {
 		panic(err)
 	}
-	defer c.Close()
+	defer client.Close()
 
-	q := client.NewQuery("SELECT * FROM geos", "climbing", "")
-	response, err := c.Query(q)
+	q := influxdb.NewQuery("SELECT * FROM geos", "climbing", "")
+	response, err := client.Query(q)
 	if err != nil {
 		panic(err)
 	}
