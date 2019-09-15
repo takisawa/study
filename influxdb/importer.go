@@ -46,16 +46,16 @@ func main() {
 	}
 
 	batchPointsConfig := influxdb.BatchPointsConfig{
-		Precision:        "s",
-		Database:         "climbing",
-		RetentionPolicy:  "1day",
-		WriteConsistency: "all",
+		Precision: "s",
+		Database:  "climbing",
 	}
 
 	bp, err := influxdb.NewBatchPoints(batchPointsConfig)
 	if err != nil {
 		panic(err)
 	}
+
+	bp.AddPoints(pts)
 
 	err = client.Write(bp)
 	if err != nil {
