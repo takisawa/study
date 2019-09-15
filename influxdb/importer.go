@@ -46,10 +46,10 @@ func main() {
 	}
 
 	batchPointsConfig := influxdb.BatchPointsConfig{
-		Precision: "s",
-		Database:  "climbing",
-		// RetentionPolicy: "",
-		// WriteConsistency: "",
+		Precision:        "s",
+		Database:         "climbing",
+		RetentionPolicy:  "1day",
+		WriteConsistency: "all",
 	}
 
 	bp, err := influxdb.NewBatchPoints(batchPointsConfig)

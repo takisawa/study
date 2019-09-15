@@ -17,17 +17,23 @@ InfluxDBの検証用のgoプログラム。
 ```
 
 
-## データベース作成
+## データベース
 
 ```
 > create database climbing
-
 > show databases
 name: databases
 name
 ----
 _internal
 climbing
+
+> create retention policy "1day" on "climbing" DURATION 1d REPLICATION 1
+> SHOW RETENTION POLICIES ON "climbing"
+name    duration shardGroupDuration replicaN default
+----    -------- ------------------ -------- -------
+autogen 0s       168h0m0s           1        true
+1day    24h0m0s  1h0m0s             1        false
 ```
 
 
