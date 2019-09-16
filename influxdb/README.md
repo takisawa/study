@@ -57,8 +57,24 @@ autogen 0s       168h0m0s           1        true
 ```
 
 
+## CSVからのデータ登録
+
+参照: https://www.influxdata.com/blog/how-to-write-points-from-csv-to-influxdb/
+
+```
+Finally, I highly recommend using a Telegraf plugin to write points
+to your InfluxDB database because Telegraf is written in Go.
+```
+
+
 ## 参照
 
 - InfluxDB key concepts
   - https://docs.influxdata.com/influxdb/v1.7/concepts/key_concepts/
   - database / measurements / tag / field / retention policy などの説明がある
+
+
+## 疑問点
+
+- Unique制約はあるのか
+- replicationの仕組み
