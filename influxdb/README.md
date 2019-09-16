@@ -37,8 +37,8 @@ autogen 0s       168h0m0s           1        true
 ```
 
 
-## InfluxDBの用語
+## 参照
 
-|用語|内容|
-|---|---|
-|measurements|RDBのテーブルに該当する|
+- InfluxDB key concepts
+  - https://docs.influxdata.com/influxdb/v1.7/concepts/key_concepts/
+  - database / measurements / tag / field / retention policy などの説明がある
