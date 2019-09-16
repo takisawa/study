@@ -17,7 +17,9 @@ InfluxDBの検証用のgoプログラム。
 ```
 
 
-## データベース
+## InfluxDBの基本操作
+
+### データベース作成
 
 ```
 > create database climbing
@@ -27,7 +29,25 @@ name
 ----
 _internal
 climbing
+> use climbing
+Using database climbing
+```
 
+### データベース削除
+
+```
+> drop database climbing
+> show databases
+name: databases
+name
+----
+_internal
+```
+
+
+### retention policyの作成
+
+```
 > create retention policy "1day" on "climbing" DURATION 1d REPLICATION 1
 > SHOW RETENTION POLICIES ON "climbing"
 name    duration shardGroupDuration replicaN default

@@ -28,6 +28,8 @@ func main() {
 
 	rand.Seed(time.Now().UnixNano())
 
+	t := time.Date(2019, 9, 16, 10, 5, 28, 0, time.UTC)
+
 	for i := 0; i < sampleSize; i++ {
 		pts[i], err = influxdb.NewPoint(
 			"geos",
@@ -38,7 +40,7 @@ func main() {
 			map[string]interface{}{
 				"value": rand.Intn(sampleSize),
 			},
-			time.Now(),
+			t,
 		)
 		if err != nil {
 			panic(err)
